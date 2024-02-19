@@ -1,0 +1,59 @@
+{
+    "Routes": [
+      {
+        "DownstreamPathTemplate": "/Authorization/{method}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 7295
+          }
+        ],
+        "UpstreamPathTemplate": "/Authorization/{method}",
+        "UpstreamHttpMethod": [ "Get", "Post", "Delete"],
+        "SwaggerKey": "authorization"
+      },
+    
+      {
+        "DownstreamPathTemplate": "/Message/{method}",
+        "DownstreamScheme": "https",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 7281
+          }
+        ],
+        "UpstreamPathTemplate": "/Message/{method}",
+        "UpstreamHttpMethod": [ "Get", "Post" ],
+        "SwaggerKey": "message"
+      }
+    ],
+    "GlobalConfiguration": {
+      "BaseUrl": "https://localhost:7070"
+    },
+    "SwaggerEndPoints": [
+      {
+        "Key": "authorization",
+        "TransformByOcelotConfig": false,
+        "Config": [
+          {
+            "Name": "ApiAuthorization",
+            "Version": "v1",
+            "Url": "https://localhost:7295/swagger/v1/swagger.json"
+          }
+        ]
+      },
+  
+      {
+        "Key": "message", 
+        "TransformByOcelotConfig": false,
+        "Config": [
+          {
+            "Name": "ApiMessage",
+            "Version": "v1",
+            "Url": "https://localhost:7281/swagger/v1/swagger.json"
+          }
+        ]
+      }
+    ]
+  }

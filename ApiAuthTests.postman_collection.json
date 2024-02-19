@@ -1,0 +1,274 @@
+{
+	"info": {
+		"_postman_id": "a906565d-673a-4e6e-81fa-61e8301070e3",
+		"name": "ApiAuthTests",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) in \"Tests\" to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32974711"
+	},
+	"item": [
+		{
+			"name": "GetCurrentUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/info?id=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"info"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "GetUsers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNyc2Etc2hhMjU2IiwidHlwIjoiSldUIn0.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3NlcmlhbG51bWJlciI6ImU3YzY0YWI2LTQ0MGEtNDM4Zi1iNDBjLWE4MmJkNGY2Yzg5MiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InVzZXJAZXhhbXBsZS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNzA4MjY4MDgyLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3Mjk1IiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzI5NSJ9.UvPTdZTvdWcnYKeIrvfO4DL5HLPk_YpQXduMPONMoZpHKar5BvfACUJ7IfCyAwbAQNFeyl8XQytfCg_d7fO-L4_iFXkbG4bfrseVAkcDLo0Mme5JA1Cczk1H5ArwuOvFkl9kmANBjy3U7tOeZwmIF3WQZ_sQ74gL8eXIYQqEPlpdPg4iPu1-G3Pn5SnPbbO-WZD4K1mNLFEV-dpux3Wj0WO6kXvOI6IWXDb9gyzuXJJQXmsmTkopA76C1yoQVQon1B-e5Kf2bMzBB7em1uahLj_sOKDGwtmbx58K2_F-aVU2o4c2BvtTnG71uZBwFKUEFYXs4r64PVderlO3i9D_PQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7295/Authorization/GetUsers",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7295",
+					"path": [
+						"Authorization",
+						"GetUsers"
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"{\r",
+							"  \"email\": \"user@example.com\",\r",
+							"  \"password\": \"string\"\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNyc2Etc2hhMjU2IiwidHlwIjoiSldUIn0.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3NlcmlhbG51bWJlciI6ImU3YzY0YWI2LTQ0MGEtNDM4Zi1iNDBjLWE4MmJkNGY2Yzg5MiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InVzZXJAZXhhbXBsZS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNzA4Mzc1NjE4LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3Mjk1IiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzI5NSJ9.ALpS7-kSvQxC5UJGi9omzJto6pb8869IfGsnL3dkwA3H_ivtoz9qdnRh_93JNEespP3JWSk-u6QbO50Cp53xGOgk-nBS-_hO0irG_jLZE2UKaRUtZkQLamY262eIZv7cImvB6eTcH57Fq8wL9Y87IP-Ri7s4C7LLA6fhDq_u2zVaBeZVULgNOKKewqF1T1WWDDNMwkV89uun5qL19rO4qMIzWtBGmmOwV4N1AJgNunSkk7JmzVrV-J57LCkd2MIiVOpSSmbn9Noyu9g2q3Ln79AfY99T2R-4L8uVDi60EV8Eb-qYbHfcFEKXspBb5IBQgzW-CqijzguYgVkrYN0ouQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "user@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "string",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7295/Authorization/Login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7295",
+					"path": [
+						"Authorization",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7295/Authorization/AddUser?email=test@example.com&password=string",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7295",
+					"path": [
+						"Authorization",
+						"AddUser"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "test@example.com"
+						},
+						{
+							"key": "password",
+							"value": "string"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddAdmin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7295/Authorization/AddAdmin",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7295",
+					"path": [
+						"Authorization",
+						"AddAdmin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNyc2Etc2hhMjU2IiwidHlwIjoiSldUIn0.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3NlcmlhbG51bWJlciI6ImRiZTFjZmM4LTE0ZGEtNDBkYi1iYTczLTI5ZmQyNmM5MjE4OCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQGV4YW1wbGUuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW5pc3RyYXRvciIsImV4cCI6MTcwODM3NzQ2OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzI5NSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcyOTUifQ.UnBjinGlHnjnSjLNJlcONsBXvai5Bb4QN3Q5S8S46-yRlEW7gPvnG7yi9q3ggnr1BA3yYnZyK1-65wU6w4YcPFyuHyRbfXAHd8V8rJUpsVKucO1EoVcr-5r96wiqMvguf8pthEcZVI9ldhM1KyNBY_YcKYYrDDk35kOZPzIjYVG8DD0JwKXDQL6FrgUVsdZgfiJx47KTOcF8rAf3-_oicwXhHGZkCGqlqCcCbNFDc5uU1p0yeEUPSFRGf413cqIA-KQMhZqtfl8Lf6Lp2uKespVB8HXmbBxJATYE4kHQqWGLIV52qT_tX9lRGSz3osSp2yyxTmVahHf03CufN9rmLw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7295/Authorization/DeleteUser",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7295",
+					"path": [
+						"Authorization",
+						"DeleteUser"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
